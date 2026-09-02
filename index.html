@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cchoice - Serverless Food Delivery Simulator</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Fullscreen Leaflet Map Container -->
+        <div id="map"></div>
+
+        <!-- Navigation Header -->
+        <header class="header-bar">
+            <div class="brand-badge">
+                <div class="brand-icon">🚀</div>
+                <div class="brand-title">cchoice Delivery</div>
+            </div>
+
+            <!-- Address Geocoding Search Bar -->
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <span class="search-icon">📍</span>
+                    <input type="text" id="address-input" class="search-input" placeholder="Enter delivery street address (e.g. 10 Downing St, London)..." autocomplete="off">
+                    <button id="clear-search-btn" class="clear-btn">✕</button>
+                </div>
+                <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+            </div>
+
+            <!-- Action Drawer Buttons -->
+            <div class="header-actions">
+                <button id="saved-addresses-btn" class="action-btn">
+                    <span>⭐</span> Saved
+                </button>
+                <button id="history-btn" class="action-btn">
+                    <span>📜</span> History
+                </button>
+            </div>
+        </header>
+
+        <!-- Restaurant Origin Selector Pills -->
+        <nav id="restaurant-bar" class="restaurant-bar">
+            <!-- Populated dynamically via JS -->
+        </nav>
+
+        <!-- Distance Limit Toast Warning -->
+        <div id="toast-warning" class="toast-warning">
+            ⚠️ Route exceeds maximum 20-minute delivery range. Select a closer destination!
+        </div>
+
+        <!-- Floating Delivery HUD Card Overlay -->
+        <div id="hud-overlay" class="hud-overlay">
+            <div class="hud-header">
+                <div class="driver-info">
+                    <div class="driver-avatar">🛵</div>
+                    <div class="driver-details">
+                        <div class="driver-name" id="driver-name">Captain Driver (Marco)</div>
+                        <div class="driver-status">
+                            <span class="status-dot"></span>
+                            <span id="driver-status-text">Select an address to start delivery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="eta-badge">
+                    <div id="eta-time" class="eta-time">--:--</div>
+                    <div class="eta-label">Simulated ETA</div>
+                </div>
+            </div>
+
+            <!-- Animated Route Progress Bar -->
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <!-- HUD Footer Playback & Speed Controls -->
+            <div class="hud-controls">
+                <div class="speed-selector">
+                    <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="2">2x</button>
+                    <button class="speed-btn" data-speed="5">5x</button>
+                    <button class="speed-btn" data-speed="10">10x</button>
+                </div>
+
+                <div class="playback-controls">
+                    <button id="btn-save-current" class="btn-secondary-sm" style="display:none;">⭐ Save Address</button>
+                    <button id="btn-toggle-play" class="btn-primary-sm">
+                        <span id="play-icon">▶</span> <span id="play-text">Start Trip</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Drawer for History & Saved Addresses -->
+        <aside id="drawer" class="drawer">
+            <div class="drawer-header">
+                <h3 id="drawer-title" class="drawer-title">Delivery History</h3>
+                <button id="close-drawer-btn" class="close-btn">✕</button>
+            </div>
+            <div id="drawer-body" class="drawer-body">
+                <!-- Content injected dynamically -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- App Controller Script -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
