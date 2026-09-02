@@ -11,13 +11,16 @@ const SAMPLE_RESTAURANTS = [
     { id: 'rest_5', name: '🥗 Green Bowl Co', lat: 51.5195, lng: -0.1378, address: 'Fitzrovia, London' }
 ];
 
+// Optional CARTO Basemaps API Key (Replace 'YOUR_CARTO_API_KEY' with your key if required)
+const CARTO_API_KEY = 'cb1_2te8_1_e16cda754e9f6f3946e5c052';
+
 class DeliveryApp {
     constructor() {
         this.map = null;
         this.selectedRestaurant = SAMPLE_RESTAURANTS[0];
         this.currentDestination = null; // { lat, lng, displayName }
         this.activeRoute = null;
-        
+
         // Markers & Polyline
         this.restaurantMarker = null;
         this.destinationMarker = null;
@@ -60,7 +63,10 @@ class DeliveryApp {
         L.control.zoom({ position: 'topright' }).addTo(this.map);
 
         // Add CartoDB Dark Matter Tiles for modern aesthetic
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        const tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' +
+            (CARTO_API_KEY ? `?api_key=${CARTO_API_KEY}` : '');
+
+        L.tileLayer(tileUrl, {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: 'abcd',
             maxZoom: 19
