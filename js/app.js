@@ -11,7 +11,7 @@ const SAMPLE_RESTAURANTS = [
     { id: 'rest_5', name: '🥗 Green Bowl Co', lat: 51.5195, lng: -0.1378, address: 'Fitzrovia, London' }
 ];
 
-// Optional CARTO Basemaps API Key (Replace 'YOUR_CARTO_API_KEY' with your key if required)
+// CARTO Basemaps API Key (Restricted to allowed domains in CARTO Dashboard)
 const CARTO_API_KEY = 'cb1_2te8_1_e16cda754e9f6f3946e5c052';
 
 class DeliveryApp {
